@@ -1,4 +1,5 @@
 #include "DIMACS_CNF_Parser.hpp"
+#include "DPLL/Solver.hpp"
 #include "DPLL/SolverContext.hpp"
 #include "IOStreamCreator.hpp"
 
@@ -11,4 +12,8 @@ int main(int argc, char **argv) {
 
   auto SolverContextFactory = DPLL::SolverContextFactory();
   auto SolverContext = SolverContextFactory.createSolverContext(RawClauses);
+
+  DPLL::Solver Solver;
+  Solver.solve(SolverContext.get());
+  SolverContext->outputResult(std::cout);
 }

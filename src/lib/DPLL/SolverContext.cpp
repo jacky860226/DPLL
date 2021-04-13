@@ -1,4 +1,5 @@
 #include "DPLL/SolverContext.hpp"
+
 namespace DPLL {
 
 Formula SolverContext::createFormula() const {
@@ -11,6 +12,21 @@ Formula SolverContext::createFormula() const {
     }
   }
   return Formula(std::move(ClausePtrs), std::move(Frequency));
+}
+
+void SolverContext::outputResult(std::ostream &output) const {
+  assert(isSolved());
+  if (ContextStatus == Status::False) {
+    output << "UNSAT\n";
+    return;
+  }
+  output << "SAT\n";
+  for (size_t i = 0; i < VariableStatus.size(); ++i) {
+    if (VariableStatus[i] == Status::False)
+      output << '-';
+    output << i + 1 << ' ';
+  }
+  output << "0\n";
 }
 
 std::unique_ptr<SolverContext> SolverContextFactory::createSolverContext(

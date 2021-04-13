@@ -26,5 +26,23 @@ $ ./DPLL [<input file>]
 
 If there is no `<input file>`, it will use standard input.
 
-## 3. How to test and evaluate
-TODO
+### 2.1 Input format
+The input is a SAT formula is DIMACS format. A detailed description can be found [here](http://www.satcompetition.org/2009/format-benchmarks2009.html).
+
+### 2.2 Input example
+
+Input:
+```
+p cnf 4 5
+1 -2 0
+2 -3 0
+3 -4 0
+1 4 0
+-1 0
+```
+
+Output:
+```
+SAT
+-1 -2 3 4 5 0
+```

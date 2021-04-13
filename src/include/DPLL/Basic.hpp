@@ -12,7 +12,7 @@ class Literal {
 public:
   Literal() = default;
   Literal(int Var, bool Sign = false) : V(Var + Var + (int)Sign) {}
-  static Literal getUndefine() { return Literal(-1); }
+  static Literal Undefine() { return Literal(-1); }
   Literal operator^(bool b) const {
     Literal Res;
     Res.V = V ^ (unsigned)b;
